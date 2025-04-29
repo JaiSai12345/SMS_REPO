@@ -1,7 +1,7 @@
 name: Send SMS via AWS SNS
 
 on:
-  workflow_dispatch:  # Manual trigger from GitHub UI
+  workflow_dispatch:
 
 jobs:
   send_sms:
@@ -17,6 +17,9 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-south-1
+
+    - name: Make script executable
+      run: chmod +x send-sms.sh
 
     - name: Send SMS using AWS SNS
       run: ./send-sms.sh
